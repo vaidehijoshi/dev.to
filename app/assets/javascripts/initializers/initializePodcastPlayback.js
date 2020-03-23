@@ -18,16 +18,9 @@
  * - initializeMedia()
  * - currentAudioState()
  * - saveMediaState()
- *
- * The following are useful eslint disables for this file in particular. Because
- * of the way it's wrapped around it's own function (own context) we don't have
- * the problem of using a method before it's defined:
  */
 
-/* eslint no-use-before-define: 0 */
-/* eslint no-param-reassign: 0 */
-
-var audioInitialized = false;
+ var audioInitialized = false;
 
 function initializePodcastPlayback() {
   function getById(name) {
@@ -283,20 +276,18 @@ function initializePodcastPlayback() {
 
   function startAudioPlayback(audio) {
     if (isNativeIOS()) {
-      try {
-        var episodeContainer = document.getElementsByClassName('podcast-episode-container')[0];
-        var metadata = JSON.parse(episodeContainer.dataset.meta);
+      var titleElement = document.getElementsByClassName('title')[0];
+      if (titleElement !== undefined) {
+        // We do have the Podcast data (not always true)
         var message = {
           'action': 'metadata',
-          'episodeName': metadata.episodeName,
-          'podcastName': metadata.podcastName,
-          'podcastImageUrl': metadata.podcastImageUrl
+          'episodeName': titleElement.querySelector('h1').innerText,
+          'podcastName': titleElement.querySelector('img').alt
         }
         sendPodcastMessage(message);
-      } catch(e) {
-        console.log('Unable to load Podcast Episode metadata', e); // eslint-disable-line no-console
       }
     }
+
     playAudio(audio).then(function() {
         spinPodcastRecord();
         startPodcastBar();

@@ -1,4 +1,4 @@
-@import '../config/import';
+@import '../vars/variables';
 
 // indicator() - Generates styles for Indicators
 //
@@ -13,7 +13,7 @@
 @mixin indicator($this, $name, $color-1) {
   &#{'--' + $name} {
     background-color: $color-1;
-    color: var(--body-color-inverted);
+    color: $snowflake;
     &#{$this + '--outlined'} {
       background-color: transparent;
       color: $color-1;
@@ -27,7 +27,7 @@
   font-family: $ff-accent;
   font-size: $fs-xs;
   padding: $su-1;
-  background-color: var(--button-secondary-bg);
+  background-color: $smoke-20;
   text-align: center;
   line-height: $lh-tight;
   border-radius: $br-default;
@@ -35,13 +35,13 @@
 
   &--outlined {
     background-color: transparent;
-    border: 1px solid var(--button-secondary-bg);
-    color: var(--button-secondary-color);
+    border: 1px solid $smoke-20;
+    color: $smoke-80;
   }
 
-  @include indicator(&, accent, var(--accent-brand));
-  @include indicator(&, critical, var(--accent-danger));
-  @include indicator(&, inverted, var(--widget-color));
+  @include indicator(&, accent, $dolphin);
+  @include indicator(&, critical, $raspberry);
+  @include indicator(&, inverted, $smoke-90);
 
   // Circle, no text
   &--bullet {

@@ -1,12 +1,10 @@
 import { h } from 'preact';
-
+import { storiesOf } from '@storybook/react';
 import { PodcastEpisode } from '../PodcastEpisode';
 import { podcastArticle } from '../../articles/__tests__/utilities/articleUtilities';
 
 import '../../../assets/stylesheets/articles.scss';
 
-export default { title: 'App Components/Podcasts/Episode' };
-
-export const Standard = () => <PodcastEpisode episode={podcastArticle} />;
-
-Standard.story = { name: 'standard' };
+storiesOf('App Components/Podcasts/Episode', module).add('Standard', () => (
+  <PodcastEpisode episode={podcastArticle} />
+));

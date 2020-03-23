@@ -17,17 +17,6 @@ class SearchController < ApplicationController
     per_page
   ].freeze
 
-  FEED_PARAMS = %i[
-    page
-    per_page
-    published_at
-    search_fields
-    sort_by
-    tag_names
-    user_id
-    class_name
-  ].freeze
-
   def tags
     tag_docs = Search::Tag.search_documents("name:#{params[:name]}* AND supported:true")
 
@@ -58,12 +47,6 @@ class SearchController < ApplicationController
     render json: { result: user_docs }
   end
 
-  def feed_content
-    feed_docs = Search::FeedContent.search_documents(params: feed_params.to_h)
-
-    render json: { result: feed_docs }
-  end
-
   private
 
   def chat_channel_params
@@ -85,10 +68,6 @@ class SearchController < ApplicationController
 
   def user_params
     params.permit(USER_PARAMS)
-  end
-
-  def feed_params
-    params.permit(FEED_PARAMS)
   end
 
   def format_integer_params

@@ -45,7 +45,7 @@ describe('BufferController', () => {
       button.click();
 
       expect(
-        element.classList.contains('bg-highlighted', 'border-highlighted'),
+        element.classList.contains('highlighted-bg', 'highlighted-border'),
       ).toBe(true);
     });
   });

@@ -1,4 +1,4 @@
-@import '../config/import';
+@import '../vars/variables';
 
 // Positions
 .static {
@@ -191,6 +191,7 @@
     'hidden': hidden,
   )
 );
+
 
 // Smooth scrolling on iOS
 .scrolling-touch {

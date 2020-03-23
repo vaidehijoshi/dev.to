@@ -20,11 +20,11 @@ module Podcasts
       end
       podcast.update_columns(reachable: true, status_notice: "")
       feed.items.size
-    rescue Net::OpenTimeout, Errno::ECONNREFUSED, SocketError, HTTParty::RedirectionTooDeep
+    rescue Net::OpenTimeout, Errno::ECONNREFUSED, SocketError => _e
       set_unreachable(:unreachable, force_update)
-    rescue OpenSSL::SSL::SSLError
+    rescue OpenSSL::SSL::SSLError => _e
       set_unreachable(:ssl_failed, force_update)
-    rescue RSS::NotWellFormedError
+    rescue RSS::NotWellFormedError => _e
       set_unreachable(:unparsable, force_update)
     end
 

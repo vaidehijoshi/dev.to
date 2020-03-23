@@ -66,14 +66,12 @@ class ReactionsController < ApplicationController
       Notification.send_reaction_notification_without_delay(reaction, reaction.reactable.organization) if organization_article?(reaction)
       result = "destroy"
     else
-      create_params = {
+      reaction = Reaction.new(
         user_id: current_user.id,
         reactable_id: params[:reactable_id],
         reactable_type: params[:reactable_type],
-        category: category
-      }
-      create_params[:status] = "confirmed" if current_user&.any_admin?
-      reaction = Reaction.new(create_params)
+        category: category,
+      )
 
       unless reaction.save
         render json: { error: reaction.errors.full_messages.join(", "), status: 422 }, status: :unprocessable_entity

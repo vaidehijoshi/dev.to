@@ -179,7 +179,7 @@ function fetchNextPodcastPage(el) {
   fetchNext(el, "/api/podcast_episodes", insertArticles)
 }
 
-function paginate(tag, requiresApproval) {
+function algoliaPaginate(tag, requiresApproval) {
   var tagFilters = [];
   if (tag && tag.length > 0) {
     tagFilters.push(tag);
@@ -253,7 +253,7 @@ function fetchNextPageIfNearBottom() {
   } else {
     scrollableElemId = "articles-list";
     fetchCallback = function fetch() {
-      paginate(indexContainer.dataset.tag, indexContainer.dataset.requiresApproval);
+      algoliaPaginate(indexContainer.dataset.algoliaTag, indexContainer.dataset.requiresApproval);
     };
   }
 

@@ -1,13 +1,13 @@
 require "rails_helper"
 
-RSpec.describe Search::User, type: :service do
+RSpec.describe Search::User, type: :service, elasticsearch: true do
   it "defines INDEX_NAME, INDEX_ALIAS, and MAPPINGS", :aggregate_failures do
     expect(described_class::INDEX_NAME).not_to be_nil
     expect(described_class::INDEX_ALIAS).not_to be_nil
     expect(described_class::MAPPINGS).not_to be_nil
   end
 
-  describe "::search_documents", elasticsearch: true do
+  describe "::search_documents" do
     let(:user1) { create(:user) }
     let(:user2) { create(:user) }
 

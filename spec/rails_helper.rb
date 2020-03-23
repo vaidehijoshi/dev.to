@@ -51,6 +51,17 @@ allowed_sites = [
 ]
 WebMock.disable_net_connect!(allow_localhost: true, allow: allowed_sites)
 
+# tell VCR to ignore browsers download sites
+# see <https://github.com/titusfortner/webdrivers/wiki/Using-with-VCR-or-WebMock>
+VCR.configure do |config|
+  config.ignore_hosts(
+    "chromedriver.storage.googleapis.com",
+    "github.com/mozilla/geckodriver/releases",
+    "selenium-release.storage.googleapis.com",
+    "developer.microsoft.com/en-us/microsoft-edge/tools/webdriver",
+  )
+end
+
 RSpec::Matchers.define_negated_matcher :not_change, :change
 
 RSpec.configure do |config|
@@ -69,6 +80,8 @@ RSpec.configure do |config|
   config.include ElasticsearchHelpers, elasticsearch: true
 
   config.before do
+    ActiveRecord::Base.observers.disable :all # <-- Turn 'em all off!
+
     Sidekiq::Worker.clear_all # worker jobs shouldn't linger around between tests
   end
 
@@ -90,7 +103,7 @@ RSpec.configure do |config|
     end
   end
 
-  # Allow testing with Stripe's test server. BE CAREFUL
+  # Allow testing with Stripe's test server. BECAREFUL
   if config.filter_manager.inclusions.rules.include?(:live)
     WebMock.allow_net_connect!
     StripeMock.toggle_live(true)
@@ -123,4 +136,9 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+end
+
+Doorkeeper.configure do
+  # hash_token_secrets on its own won't work in test
+  hash_token_secrets fallback: :plain
 end

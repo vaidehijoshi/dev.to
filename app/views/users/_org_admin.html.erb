@@ -1,6 +1,7 @@
-<%= javascript_packs_with_chunks_tag "colorPreview", "clipboardCopy", defer: true %>
+<%= javascript_pack_tag "colorPreview", defer: true %>
 
 <%= render "shared/webcomponents_loader_script" %>
+<%= javascript_pack_tag "clipboardCopy", defer: true %>
 
 <style>
   .primary-sticky-nav-author, .primary-sticky-nav-author-element {

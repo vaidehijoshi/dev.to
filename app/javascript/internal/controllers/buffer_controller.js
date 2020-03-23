@@ -4,23 +4,19 @@ export default class BufferController extends Controller {
   static targets = ['header', 'bodyText'];
 
   tagBufferUpdateConfirmed() {
-    this.clearPreviousBadge();
-
     this.headerTarget.innerHTML +=
       '<span class="ml-2 badge badge-success">Confirm</span>';
   }
 
   tagBufferUpdateDismissed() {
-    this.clearPreviousBadge();
-
     this.headerTarget.innerHTML +=
       '<span class="ml-2 badge badge-danger">Dismiss</span>';
   }
 
   highlightElement() {
-    this.element.classList.add('bg-highlighted', 'border-highlighted');
+    this.element.classList.add('highlighted-bg', 'highlighted-border');
     setTimeout(() => {
-      this.element.classList.remove('bg-highlighted');
+      this.element.classList.remove('highlighted-bg');
     }, 350);
   }
 
@@ -28,13 +24,6 @@ export default class BufferController extends Controller {
     this.bodyTextTarget.rows = this.bodyTextTarget.value.split(
       /\r\n|\r|\n/,
     ).length;
-  }
-
-  clearPreviousBadge() {
-    const badge = this.headerTarget.querySelector('.badge');
-    if (badge) {
-      badge.remove();
-    }
   }
 
   get bufferUpdateId() {

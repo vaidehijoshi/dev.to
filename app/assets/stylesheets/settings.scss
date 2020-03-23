@@ -1,8 +1,5 @@
 @import 'variables';
 @import 'mixins';
-@import 'functions';
-$input-width: 650px;
-
 #page-content.users-edit,
 #page-content.users-update,
 #page-content.users-confirm_destroy,
@@ -248,7 +245,7 @@ $input-width: 650px;
     }
     form {
       input {
-        width: $input-width;
+        width: 650px;
         max-width: calc(100% - 30px);
         padding: 12px;
         font-size: 19px;
@@ -275,7 +272,7 @@ $input-width: 650px;
       select {
         display: block;
         font-size: 19px;
-        width: $input-width;
+        width: 650px;
         max-width: calc(100% - 4px);
         padding: 12px;
         border: 1px solid rgb(222, 230, 233);
@@ -331,7 +328,7 @@ $input-width: 650px;
       }
       textarea {
         border: 1px solid rgb(222, 230, 233);
-        width: $input-width;
+        width: 550px;
         max-width: calc(100% - 30px);
         padding: 12px;
         border-radius: 3px;
@@ -504,7 +501,7 @@ $input-width: 650px;
   box-shadow: $shadow;
   &.loading-repos {
     height: 400px;
-    background: white url(image-src('loading-ellipsis.svg')) no-repeat center
+    background: white url(image_path('loading-ellipsis.svg')) no-repeat center
       center;
     background-size: 50px;
   }
@@ -548,7 +545,7 @@ $input-width: 650px;
         }
         &:disabled {
           cursor: wait;
-          background: white url(image-src('loading-ellipsis.svg')) no-repeat
+          background: white url(image_path('loading-ellipsis.svg')) no-repeat
             center center;
           background-size: 75px;
         }
@@ -714,7 +711,6 @@ ul.delete__account {
     float: left;
 
     .title {
-      color: $dark-gray;
       font-weight: bold;
       margin: 0;
       padding-bottom: 0.25rem;

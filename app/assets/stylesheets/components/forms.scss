@@ -1,28 +1,33 @@
-@import '../config/import';
+@import '../vars/variables';
 
 %form-styling {
-  background-color: var(--form-bg);
-  border: 1px solid var(--form-border);
-  color: var(--body-color);
+  background-color: $smoke-00;
+  border: 1px solid $smoke-30;
   appearance: none;
-  -webkit-appearance: none;
   border-radius: $br-default;
   transition: all $transition-props;
 
   &-hover {
-    border-color: var(--form-border-hover);
+    border-color: $smoke-40;
   }
 
   &-disabled {
-    opacity: 0.6;
+    color: $smoke-60;
+    background-color: $smoke-10;
   }
 
   &-checked {
-    background-color: var(--form-border-focus);
-    border-color: var(--form-border-focus);
-    color: var(--form-bg-focus);
+    background-color: $dolphin;
+    border-color: $dolphin-darker;
+    color: $snowflake;
     background-position: center center;
     background-repeat: no-repeat;
+  }
+
+  &-checked-disabled {
+    background-color: $dolphin-lighter;
+    border-color: $dolphin-lighter;
+    color: rgba($snowflake, 0.5);
   }
 }
 
@@ -36,7 +41,7 @@
   @extend %form-styling;
 
   &::placeholder {
-    color: var(--form-placeholder-color);
+    color: $smoke-60;
   }
 
   &:hover {
@@ -44,9 +49,9 @@
   }
 
   &:focus {
-    background-color: var(--form-bg-focus);
-    border-color: var(--form-border-focus);
-    box-shadow: 1px 1px 0 var(--form-border-focus);
+    background-color: $snowflake;
+    border-color: $dolphin;
+    box-shadow: 1px 1px 0 $dolphin;
   }
 
   &--disabled,
@@ -89,7 +94,7 @@
 
     &--disabled,
     &[disabled] {
-      @extend %form-styling-disabled;
+      @extend %form-styling-checked-disabled;
     }
   }
 }
@@ -116,7 +121,7 @@
   $this: &;
 
   &__label {
-    color: var(--label-primary);
+    color: $smoke-90;
     font-weight: $fw-medium;
 
     + .crayons-field__description {
@@ -125,7 +130,7 @@
   }
 
   &__description {
-    color: var(--label-secondary);
+    color: $smoke-60;
     font-size: $fs-s;
     font-weight: $fw-normal; // for when it's inside --label
     margin: 0; //todo remove
@@ -144,8 +149,8 @@
     transition: all $transition-props;
 
     &:hover {
-      background: var(--body-bg);
-      box-shadow: 0 0 0 $su-1 var(--body-bg);
+      background: $smoke-10;
+      box-shadow: 0 0 0 $su-1 $smoke-10;
     }
 
     #{$this}__label {

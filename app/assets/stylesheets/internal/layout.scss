@@ -1,5 +1,3 @@
-@import '../variables';
-
 #siteConfigBodyContainer {
   padding: 20px;
 }
@@ -16,49 +14,53 @@
   }
 }
 
-.buffer-cell {
-    /* Max-width derived from width of a Bootstrap container */
-    max-width: 1140px;
-    word-wrap: break-word;
+.wrapper {
+  display: grid;
+  grid-template-columns: 25% 15% 15% 15% 15% 15%;
+  padding: 2px;
 }
 
-.bg-featured {
+.grid-item {
+  word-wrap: break-word;
+}
+
+.single-internal-listing {
+  border-bottom: 1px solid grey;
+  padding: 10px;
+}
+
+.buffering-area-for-single-listing {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 2px;
+}
+
+.featured-bg {
   background: #bbffd2;
 }
 
-.bg-approved {
+.approved-bg {
   background: #92e8ae;
   border: 12px solid #ff9900;
 }
 
-.bg-highlighted {
+.highlighted-bg {
   background: #2effa8 !important;
   border: 20px solid black;
 }
 
-.border-highlighted {
-  border: 20px solid black;
+.submitting-no-border {
+  background: #96f2cc !important;
 }
 
-.sidebar-nav {
-  min-height: 100vh;
-  background: $light-gray;
-  position: sticky;
-  top: 0;
-  align-self: flex-start;
-  max-width: 135px;
+.highlighted-no-border {
+  background: #2effa8 !important;
+}
 
-  .sidebar-nav-item {
-    display: block;
-    padding: 0.2em;
+.highlighted-no-border input[type='submit'] {
+  display: none;
+}
 
-    &:hover {
-      text-decoration: none;
-      background: $light-medium-gray;
-    }
-  }
-
-  .sidebar-nav-item.active {
-    background: $light-medium-gray;
-  }
+.highlighted-border {
+  border: 20px solid black;
 }
